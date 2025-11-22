@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "cleanUrls": true,
-  "trailingSlash": false,
   "builds": [
+
     {
       "src": "backend/src/server.js",
       "use": "@vercel/node"
     },
+
     {
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
@@ -14,8 +14,13 @@
     }
   ],
   "rewrites": [
+
     { "source": "/api/(.*)", "destination": "/backend/src/server.js" },
-    { "source": "/assets/(.*)", "destination": "/frontend/dist/assets/$1" },
+    
+
+    { "source": "/(.*)\\.[a-zA-Z0-9]+$", "destination": "/frontend/dist/$1" },
+    
+
     { "source": "/(.*)", "destination": "/frontend/dist/index.html" }
   ]
 }
