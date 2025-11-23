@@ -55,9 +55,5 @@ app.use('/api/stats',statsRoutes)
 app.use((err, req, res, next) => {
 	res.status(500).json({ message: process.env.NODE_ENV === "production" ? "Internal server error" : err.message });
 });
-
-
-httpServer.listen(PORT,()=>{
-    connectDB()
-    console.log("Server is running at Port ",+PORT)
-})
+connectDB()
+export default app;
