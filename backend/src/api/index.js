@@ -24,8 +24,7 @@ dotenv.config()
 app.use(express.json())
 
 //initializing socket io by passing our server
-const httpServer = createServer(app)
-initializeSocket(httpServer)
+
 
 const PORT = process.env.PORT || 5000
 app.use(cors({
