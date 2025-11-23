@@ -24,13 +24,26 @@ dotenv.config()
 app.use(express.json())
 
 //initializing socket io by passing our server
-
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://spotify-clone-binc.vercel.app", 
+  "https://spotify-clone-binc-c42i4tzhp-twistedfate777s-projects.vercel.app",
+];
 
 const PORT = process.env.PORT || 5000
 app.use(cors({
-  origin:"https://spotify-clone-binc.vercel.app",
-  credentials:true
-}))
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}.`;
+      return callback(new Error(msg), false);
+    }
+    
+    return callback(null, true);
+  },
+  credentials: true
+}));
 
 app.use(clerkMiddleware()) //this will add auth to req object => (give access to) req.auth.userId
 //when we upload a file from the client, we would like to store them in a temporary file in backend
