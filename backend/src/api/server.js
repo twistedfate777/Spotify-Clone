@@ -4,16 +4,17 @@ import fileUpload from 'express-fileupload'
 import { clerkMiddleware } from '@clerk/express'
 import path from 'path'
 
-import userRoutes from './routes/user.route.js'
-import adminRoutes from './routes/admin.route.js'
-import authRoutes from './routes/auth.route.js'
-import songRoutes from './routes/song.route.js'
-import statsRoutes from './routes/stats.route.js'
-import albumRoutes from './routes/album.route.js'
-import { connectDB } from './lib/db.js'
+import userRoutes from '../routes/user.route.js'
+import adminRoutes from '../routes/admin.route.js'
+import authRoutes from '../routes/auth.route.js'
+import songRoutes from '../routes/song.route.js'
+import statsRoutes from '../routes/stats.route.js'
+import albumRoutes from '../routes/album.route.js'
+import {connectDB} from '../lib/db.js'
+
 import cors from "cors"
 import { createServer } from 'http'
-import { initializeSocket } from './lib/socket.js'
+import { initializeSocket } from '../lib/socket.js'
 
 
 const app = express()
@@ -54,5 +55,9 @@ app.use('/api/stats',statsRoutes)
 app.use((err, req, res, next) => {
 	res.status(500).json({ message: process.env.NODE_ENV === "production" ? "Internal server error" : err.message });
 });
-  connectDB()
-module.exports = app;
+
+
+httpServer.listen(PORT,()=>{
+    connectDB()
+    console.log("Server is running at Port ",+PORT)
+})
