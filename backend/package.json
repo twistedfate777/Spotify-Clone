@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "src/api/server.js",
+  "main": "src/api/index.js",
   "scripts": {
-    "start": "node src/api/server.js",
-    "dev": "nodemon src/api/server.js",
+    "start": "node src/api/index.js",
+    "dev": "nodemon src/api/index.js",
     "seed:songs":"node src/seeds/songs.js",
     "seed:albums":"node src/seeds/albums.js"
   },
