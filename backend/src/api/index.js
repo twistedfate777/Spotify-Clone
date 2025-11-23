@@ -28,7 +28,7 @@ app.use(express.json())
 
 const PORT = process.env.PORT || 5000
 app.use(cors({
-  origin:"http://localhost:3000",
+  origin:"https://spotify-clone-binc.vercel.app/",
   credentials:true
 }))
 
